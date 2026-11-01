@@ -2,6 +2,9 @@ const terminalOutput = document.getElementById('terminal-output');
 const terminalInput = document.getElementById('terminal-input');
 const leftPanel = document.getElementById('left-panel');
 const rightPanel = document.getElementById('right-panel');
+const canvas = document.getElementById('bg-canvas');
+const ctx = canvas.getContext('2d');
+let userLetters = ['0', '1']; 
 
 let isProcessing = false;
 
@@ -158,3 +161,48 @@ function runWithLoading(message, callback) {
         terminalInput.focus();
     }, 1500);
 }
+
+// бидождь
+function resizeCanvas() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+}
+resizeCanvas();
+window.addEventListener('resize', resizeCanvas);
+
+const fontSize = 20;
+let columns = canvas.width / fontSize;
+let drops = [];
+
+for (let x = 0; x < columns; x++) {
+    drops[x] = Math.random() * -100; 
+}
+
+function drawMatrix() {
+    ctx.fillStyle = 'rgba(0, 0, 0, 0.08)';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    ctx.fillStyle = '#00ff00'; 
+    ctx.font = fontSize + 'px VT323';
+
+    for (let i = 0; i < drops.length; i++) {
+        const randomLetter = userLetters[Math.floor(Math.random() * userLetters.length)];
+        ctx.fillText(randomLetter, i * fontSize, drops[i] * fontSize);
+
+        if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+            drops[i] = 0;
+        }
+        drops[i]++;
+    }
+}
+
+setInterval(drawMatrix, 45);
+
+document.addEventListener('keydown', function(event) {
+    if (event.key.length === 1 && /[a-zA-Z0-9]/.test(event.key)) {
+        const letter = event.key.toUpperCase();
+        if (!userLetters.includes(letter)) {
+            userLetters.push(letter);
+        }
+    }
+});

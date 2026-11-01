@@ -30,6 +30,7 @@ terminalInput.addEventListener('keydown', function(event) {
                 printLine('  skills    - list technical skills');
                 printLine('  contacts  - display social media links');
                 printLine('  clear     - clear terminal and panels');
+                printLine('  reset     - reset background rain to 0 and 1');
                 break;
                 
             case 'whoami':
@@ -93,6 +94,10 @@ terminalInput.addEventListener('keydown', function(event) {
                     }
                     printLine('Links displayed on the left panel.', 'success');
                 });
+                break;
+            case 'reset':
+                userLetters = ['0', '1']; 
+                printLine('System rain reset.', 'success');
                 break;
 
             case 'clear':

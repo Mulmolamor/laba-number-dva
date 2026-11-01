@@ -11,9 +11,11 @@ let isProcessing = false;
 terminalInput.addEventListener('keydown', function(event) {
     if (event.key === 'Enter' && !isProcessing) {
         
-        const click = new Audio('click.mp3');
-        click.volume = 0.05;
-        click.play();
+        try {
+            const click = new Audio('click.mp3');
+            click.volume = 0.05;
+            click.play().catch(() => {});
+        } catch (e) {}
 
         const command = terminalInput.value.trim().toLowerCase();
         terminalInput.value = ''; 

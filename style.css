@@ -177,22 +177,3 @@ body {
     z-index: -1; 
     background: #000;
 }
-
-@media (max-width: 900px) {
-    body {
-        flex-direction: column; 
-        justify-content: flex-start;
-        padding: 0;
-        overflow-y: auto; 
-    }
-    .terminal-window {
-        width: 100%;
-        max-width: 100%;
-        height: 100vh;
-        border: none;
-    }
-    .side-panel {
-        width: 100%;
-        max-width: 100%;
-    }
-}

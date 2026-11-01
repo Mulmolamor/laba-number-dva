@@ -181,3 +181,17 @@ body {
     z-index: -1; 
     background: #000;
 }
+
+@media (max-width: 900px) {
+    body {
+        flex-direction: column; 
+        justify-content: flex-start;
+    }
+    .terminal-window {
+        height: 50vh; 
+    }
+    .side-panel {
+        width: 100%;
+        max-width: 700px;
+    }
+}
